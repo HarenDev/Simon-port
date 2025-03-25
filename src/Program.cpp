@@ -15,13 +15,14 @@ void Program::Init(){
 	//Load other images
 	logo.Load(raylib::Image("images/Logo.png").Resize(330,330));
 	logoLight.Load(raylib::Image("images/LogoLight.png").Resize(330,330));
-	startUpScreen.Load("images/StartScreen.png");
-	gameOverScreen.Load("images/GameOverScreen.png");
+	startUpScreen.Load(raylib::Image("images/StartScreen.png").Resize(1024,768));
+	gameOverScreen.Load(raylib::Image("images/GameOverScreen.png").Resize(1024,768));
     background.Load(raylib::Image::GradientRadial(GetScreenWidth(), GetScreenHeight(), 0.5f, Color{50, 50, 50, 255}, Color{15, 15, 15, 255}));
 
     //Load Music
 	backgroundMusic.Load("sounds/BackgroundMusic.mp3");
 	backgroundMusic.SetLooping(true);
+	backgroundMusic.Play();
     
 }
 
@@ -56,8 +57,6 @@ void Program::Update(){
 			lightOff(Green);
 		}
 	}
-
-	backgroundMusic.Play();
 }
 
 void Program::Draw(){
