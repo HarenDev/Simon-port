@@ -49,9 +49,9 @@ void Button::playSound(){
     }
 }
 
-void Button::setPressed(raylib::Vector2 mousePosition){
+void Button::setPressed(){
     //If the mouse is inside the button, set the button as pressed
-    if (raylib::Rectangle(mousePosition.x, mousePosition.y, this->width, this->height).CheckCollision(raylib::Mouse::GetPosition())) {
+    if (raylib::Rectangle(this->x, this->y, this->width, this->height).CheckCollision(raylib::Mouse::GetPosition())) {
         isPressed = true;
         pressCounter = 1; //You may change that pressCounter variable to a higher number
         //If you wish for it to stay pressed for a longer time
