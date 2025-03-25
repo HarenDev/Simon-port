@@ -27,20 +27,20 @@ int main ()
 	SearchAndSetResourceDir("resources");
 
 	//Initialize the program
-	Program program;
+	Program simon;
 	
 	// game loop
 	while (!WindowShouldClose())		// run the loop untill the user presses ESCAPE or presses the Close button on the window
 	{
 		//Check for player input every frame
-		program.CheckInput();
+		simon.CheckInput();
 
 		//Update program logic every frame
-		program.Update();
+		simon.Update();
 
 		BeginDrawing();
 		//Draw every frame
-		program.Draw();
+		simon.Draw();
 
 		EndDrawing();
 	}
