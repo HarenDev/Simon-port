@@ -32,6 +32,8 @@ int main ()
 	// game loop
 	while (!WindowShouldClose())		// run the loop untill the user presses ESCAPE or presses the Close button on the window
 	{
+		program.CheckInput();
+
 		program.Update();
 
 		// drawing

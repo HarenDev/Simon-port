@@ -20,16 +20,19 @@ class Program {
         void Init();
         void Update();
         void Draw();
+        void CheckInput();
 
+    private:
         //Game-specific functions
         void lightOn(Buttons color);
         void lightOff(Buttons color);
         void generateSequence();
-        bool checkUserInput(Buttons c);
+        bool checkPlayerInput(Buttons c);
         void GameReset();
         void startUpSequence(int count);
+        void mousePressed(raylib::Vector2 mousePosition, bool buttonPressed);
+        void keyPressed(int key);
 
-    private:
         vector<Buttons> Sequence;
 
         Button *RedButton;

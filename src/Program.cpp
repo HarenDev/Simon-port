@@ -162,7 +162,7 @@ void Program::generateSequence(){
 	sequenceLimit = Sequence.size();
 }
 //--------------------------------------------------------------
-bool Program::checkUserInput(Buttons input){
+bool Program::checkPlayerInput(Buttons input){
 	//This function will varify if the user input matches the color
 	//of the sequence at the current index
 	if(Sequence[userIndex] == input){
@@ -218,15 +218,15 @@ void Program::keyPressed(int key){
 }
 
 
-void Program::mousePressed(int x, int y, int button){
+void Program::mousePressed(raylib::Vector2 mousePosition, bool buttonPressed){
 	//If we're not in Idle and the gameState equals PlayerInput,
 	//We will pay attention to the mousePresses from the user
-	if(!idle && gameState == PlayerInput){
+	if(!idle && gameState == PlayerInput && buttonPressed){
 		//We mark the pressed button as "pressed"
-		RedButton->setPressed(x,y);
-		BlueButton->setPressed(x,y);
-		YellowButton->setPressed(x,y);
-		GreenButton->setPressed(x,y);
+		RedButton->setPressed(mousePosition);
+		BlueButton->setPressed(mousePosition);
+		YellowButton->setPressed(mousePosition);
+		GreenButton->setPressed(mousePosition);
 
 		//We check which button got pressed
 		if(RedButton->wasPressed()){
@@ -245,7 +245,7 @@ void Program::mousePressed(int x, int y, int button){
 		lightOn(color);
 		lightDisplayDuration = 15;
 			//If the user input is correct, we can continue checking
-			if(checkUserInput(color)){
+			if(checkPlayerInput(color)){
 				userIndex++;
 			}
 			//If not, then we will terminate the game by 
@@ -254,6 +254,11 @@ void Program::mousePressed(int x, int y, int button){
 				gameState = GameOver;
 			}
 	}
+}
+
+void Program::CheckInput(){
+	keyPressed(IsKeyPressed(KEY_SPACE));
+	mousePressed(GetMousePosition(), IsMouseButtonPressed(MOUSE_BUTTON_LEFT));
 }
 
 //You may honestly ignore this function, shouldnt be something you need
@@ -298,20 +303,12 @@ void Program::startUpSequence(int count){
 	//Logo Drawing
 	if(logoIsReady && logoCounter > 0){
 		logoCounter--;
-		ofSetColor(256,256,256,logoCounter);
-		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150);
-		ofSetColor(256,256,256);
+		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {256,256,256,logoCounter});
 	}
 	if((count > 375) && !logoIsReady){
 		logoCounter++;
-
-		ofSetColor(256,256,256,logoCounter);
-		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150);
-
-		ofSetColor(256,256,256,logoCounter);
-		logo.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150);
-
-		ofSetColor(256,256,256);
+		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {256,256,256,logoCounter});
+		logo.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {256,256,256,logoCounter});
 	}
 	if(logoCounter >=255){
 		logoIsReady = true;
