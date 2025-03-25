@@ -1,6 +1,6 @@
 #include "Program.hpp"
 
-void Program::Init(){
+Program::Program(){
     RedButton = new Button(GetScreenWidth()/2-20,GetScreenHeight()/2-260,302,239,"images/BlueButton.png","sounds/YellowButton.mp3");
 	BlueButton = new Button(GetScreenWidth()/2+35,GetScreenHeight()/2-10,236,290,"images/Rebutton.mp4","sounds/YellowButton.mp3");
 	YellowButton = new Button(GetScreenWidth()/2-260,GetScreenHeight()/2+40,287,239,"images/RedButton.png","sounds/YellowButton.mp3");

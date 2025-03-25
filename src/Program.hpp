@@ -16,8 +16,8 @@ class Program {
     };
 
     public:
-        //Critical functions for this program
-        void Init();
+        //Critical functions for this program  
+        Program();
         void Update();
         void Draw();
         void CheckInput();

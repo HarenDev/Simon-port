@@ -14,8 +14,8 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 
 int main ()
 {
-	//Set fps to 60
-	SetTargetFPS(60);
+	//Match the openFrameworks version
+	SetTargetFPS(100);
 
 	//Initialize audio device to play sound files
 	InitAudioDevice();
@@ -26,19 +26,20 @@ int main ()
 	// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
 	SearchAndSetResourceDir("resources");
 
+	//Initialize the program
 	Program program;
-	program.Init();
 	
 	// game loop
 	while (!WindowShouldClose())		// run the loop untill the user presses ESCAPE or presses the Close button on the window
 	{
+		//Check for player input every frame
 		program.CheckInput();
 
+		//Update program logic every frame
 		program.Update();
 
-		// drawing
 		BeginDrawing();
-
+		//Draw every frame
 		program.Draw();
 
 		EndDrawing();
