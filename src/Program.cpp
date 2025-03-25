@@ -27,6 +27,9 @@ void Program::Init(){
 }
 
 void Program::Update(){
+	//Needed for continuous audio playback in Raylib
+	backgroundMusic.Update();
+
     //We will tick the buttons, aka constantly update them
 	//while expecting input from the user to see if anything changed
 	if(gameState == PlayerInput){
