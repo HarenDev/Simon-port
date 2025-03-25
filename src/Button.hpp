@@ -15,6 +15,7 @@ enum Buttons{
 class Button{
     public:
         Button(float x, float y, float width, float height, string imagePath, string soundPath);
+        ~Button();
         void render();
         void tick();
         void playSound();
@@ -24,8 +25,7 @@ class Button{
         int getY(){return y;}
         void toggleLightOn(){isLightUp = true;}
         void toggleLightOff(){isLightUp = false;}
-        bool GetIsLightUp(){return isLightUp;}
-        
+        bool GetIsLightUp(){return isLightUp;}    
 
     private:
         float x, y, width, height;

@@ -57,3 +57,8 @@ void Button::setPressed(raylib::Vector2 mousePosition){
         //If you wish for it to stay pressed for a longer time
     }
 }
+
+Button::~Button(){
+    UnloadTexture(image);
+    UnloadSound(buttonSound);
+}
