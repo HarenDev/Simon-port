@@ -56,8 +56,8 @@ void Button::playSound(){
 }
 
 void Button::setPressed(){
-    //If the mouse is inside the button, set the button as pressed
-    if (CheckCollisionPointRec(GetMousePosition(),{this->x,this->y,this->width,this->height})) {
+    //If the mouse is inside the button(a rectangle created using its properties), set the button as pressed
+    if (CheckCollisionPointRec(GetMousePosition(), Rectangle{this->x,this->y,this->width,this->height})) {
         isPressed = true;
         pressCounter = 1; //You may change that pressCounter variable to a higher number
         //If you wish for it to stay pressed for a longer time
