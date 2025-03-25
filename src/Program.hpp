@@ -30,8 +30,8 @@ class Program {
         bool checkPlayerInput(Buttons c);
         void GameReset();
         void startUpSequence(int count);
-        void mousePressed(raylib::Vector2 mousePosition, bool buttonPressed);
-        void keyPressed(int key);
+        void mousePressed();
+        void keyPressed();
 
         vector<Buttons> Sequence;
 

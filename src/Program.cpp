@@ -8,9 +8,9 @@ void Program::Init(){
 
     //Load the glowing images for the buttons
 	redLight.Load(raylib::Image("images/BlueLight.png").Resize(376, 329));
-    blueLight.Load(raylib::Image("images/GreenLight.png"));
-    yellowLight.Load(raylib::Image("images/YellowLight.png"));
-    greenLight.Load(raylib::Image("images/RedLight.png"));
+    blueLight.Load(raylib::Image("images/GreenLight.png").Resize(309, 376));
+    yellowLight.Load(raylib::Image("images/YellowLight.png").Resize(374, 318));
+    greenLight.Load(raylib::Image("images/RedLight.png").Resize(315, 356));
 
 	//Load other images
 	logo.Load(raylib::Image("images/Logo.png").Resize(330,330));
@@ -22,7 +22,6 @@ void Program::Init(){
     //Load Music
 	backgroundMusic.Load("sounds/BackgroundMusic.mp3");
 	backgroundMusic.SetLooping(true);
-	backgroundMusic.Play();
     
 }
 
@@ -57,6 +56,8 @@ void Program::Update(){
 			lightOff(Green);
 		}
 	}
+
+	backgroundMusic.Play();
 }
 
 void Program::Draw(){
@@ -209,24 +210,24 @@ void Program::lightOff(Buttons color){
 }
 
 
-void Program::keyPressed(int key){
+void Program::keyPressed(){
 	//As long as we're not in Idle OR the gameState is GameOver;
 	//AND we press the SPACEBAR, we will reset the game
-	if((!idle || gameState == GameOver) && tolower(key) == ' '){
+	if((!idle || gameState == GameOver) && IsKeyPressed(KEY_SPACE)){
 		GameReset();
 	}
 }
 
 
-void Program::mousePressed(raylib::Vector2 mousePosition, bool buttonPressed){
+void Program::mousePressed(){
 	//If we're not in Idle and the gameState equals PlayerInput,
 	//We will pay attention to the mousePresses from the user
-	if(!idle && gameState == PlayerInput && buttonPressed){
+	if(!idle && gameState == PlayerInput && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
 		//We mark the pressed button as "pressed"
-		RedButton->setPressed(mousePosition);
-		BlueButton->setPressed(mousePosition);
-		YellowButton->setPressed(mousePosition);
-		GreenButton->setPressed(mousePosition);
+		RedButton->setPressed(GetMousePosition());
+		BlueButton->setPressed(GetMousePosition());
+		YellowButton->setPressed(GetMousePosition());
+		GreenButton->setPressed(GetMousePosition());
 
 		//We check which button got pressed
 		if(RedButton->wasPressed()){
@@ -257,8 +258,8 @@ void Program::mousePressed(raylib::Vector2 mousePosition, bool buttonPressed){
 }
 
 void Program::CheckInput(){
-	keyPressed(IsKeyPressed(KEY_SPACE));
-	mousePressed(GetMousePosition(), IsMouseButtonPressed(MOUSE_BUTTON_LEFT));
+	keyPressed();
+	mousePressed();
 }
 
 //You may honestly ignore this function, shouldnt be something you need
@@ -303,12 +304,12 @@ void Program::startUpSequence(int count){
 	//Logo Drawing
 	if(logoIsReady && logoCounter > 0){
 		logoCounter--;
-		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {256,256,256,logoCounter});
+		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {255,255,255,(unsigned char)logoCounter});
 	}
 	if((count > 375) && !logoIsReady){
 		logoCounter++;
-		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {256,256,256,logoCounter});
-		logo.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {256,256,256,logoCounter});
+		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {255,255,255,(unsigned char)logoCounter});
+		logo.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {255,255,255,(unsigned char)logoCounter});
 	}
 	if(logoCounter >=255){
 		logoIsReady = true;
