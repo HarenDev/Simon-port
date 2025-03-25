@@ -20,6 +20,7 @@ Button::Button(float x, float y, float width, float height, string imagePath, st
 void Button::render(){
     
     if (image.IsValid()){
+        raylib::Rectangle(this->x,this->y,this->width,this->height).Draw(RED);
         image.Draw(this->x, this->y, WHITE);
     }
 
@@ -49,9 +50,9 @@ void Button::playSound(){
     }
 }
 
-void Button::setPressed(raylib::Vector2 mousePosition){
+void Button::setPressed(){
     //If the mouse is inside the button, set the button as pressed
-    if (raylib::Rectangle(mousePosition.x, mousePosition.y, this->width, this->height).CheckCollision(raylib::Mouse::GetPosition())) {
+    if (raylib::Rectangle(this->x, this->y, this->width, this->height).CheckCollision(raylib::Mouse::GetPosition())) {
         isPressed = true;
         pressCounter = 1; //You may change that pressCounter variable to a higher number
         //If you wish for it to stay pressed for a longer time

@@ -232,10 +232,10 @@ void Program::mousePressed(){
 	//We will pay attention to the mousePresses from the user
 	if(!idle && gameState == PlayerInput && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
 		//We mark the pressed button as "pressed"
-		RedButton->setPressed(GetMousePosition());
-		BlueButton->setPressed(GetMousePosition());
-		YellowButton->setPressed(GetMousePosition());
-		GreenButton->setPressed(GetMousePosition());
+		RedButton->setPressed();
+		BlueButton->setPressed();
+		YellowButton->setPressed();
+		GreenButton->setPressed();
 
 		//We check which button got pressed
 		if(RedButton->wasPressed()){
