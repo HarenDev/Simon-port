@@ -1,16 +1,16 @@
 #include "Program.hpp"
 
 Program::Program(){
-    RedButton = new Button(GetScreenWidth()/2-20,GetScreenHeight()/2-260,302,239,"images/RedButton.png","sounds/RedButton.mp3");
-	BlueButton = new Button(GetScreenWidth()/2+35,GetScreenHeight()/2-10,236,290,"images/BlueButton.png","sounds/BlueButton.mp3");
+    RedButton = new Button(GetScreenWidth()/2-20,GetScreenHeight()/2-260,302,239,"images/BlueButton.png","sounds/YellowButton.mp3");
+	BlueButton = new Button(GetScreenWidth()/2+35,GetScreenHeight()/2-10,236,290,"images/Rebutton.mp4","sounds/YellowButton.mp3");
 	YellowButton = new Button(GetScreenWidth()/2-260,GetScreenHeight()/2+40,287,239,"images/YellowButton.png","sounds/YellowButton.mp3");
-	GreenButton = new Button(GetScreenWidth()/2-260,GetScreenHeight()/2-260,234,294,"images/GreenButton.png","sounds/GreenButton.mp3");
+	GreenButton = new Button(GetScreenWidth()/2-260,GetScreenHeight()/2-260,234,294,"images/GreenButton.png","sounds/YellowButton.mp3");
 
     //Load the glowing images for the buttons
-	redLight.Load(raylib::Image("images/RedLight.png").Resize(376, 329));
-    blueLight.Load(raylib::Image("images/BlueLight.png").Resize(309, 376));
+	redLight.Load(raylib::Image("images/BlueLight.png").Resize(376, 329));
+    blueLight.Load(raylib::Image("images/GreenLight.png").Resize(309, 376));
     yellowLight.Load(raylib::Image("images/YellowLight.png").Resize(374, 318));
-    greenLight.Load(raylib::Image("images/GreenLight.png").Resize(315, 356));
+    greenLight.Load(raylib::Image("images/RedLight.png").Resize(315, 356));
 
 	//Load other images
 	logo.Load(raylib::Image("images/Logo.png").Resize(330,330));
@@ -154,14 +154,8 @@ void Program::generateSequence(){
 	if(random == 0){
 		Sequence.push_back(Red);
 	}
-	else if(random == 1){
-		Sequence.push_back(Yellow);
-	}
-	else if(random == 2){
-		Sequence.push_back(Blue);
-	}
 	else if(random == 3){
-		Sequence.push_back(Green);
+		Sequence.push_back(Yellow);
 	}
 
 	//We will adjust the sequence limit to the new size of the Sequence list
@@ -184,11 +178,9 @@ void Program::lightOn(Buttons color){
 	//true for the button that matches the color, and also play the button sound
 	if(color == Red){
 		RedButton->toggleLightOn();
-		RedButton->playSound();
 	}
 	else if(color == Blue){
 		BlueButton->toggleLightOn();
-		BlueButton->playSound();
 	}
 	else if(color == Yellow){
 		YellowButton->toggleLightOn();
@@ -196,7 +188,6 @@ void Program::lightOn(Buttons color){
 	}
 	else if(color == Green){
 		GreenButton->toggleLightOn();
-		GreenButton->playSound();
 	}
 }
 
