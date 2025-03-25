@@ -37,4 +37,26 @@ class Program {
         Button *YellowButton;
         Button *GreenButton;
 
+        raylib::Texture background;
+        raylib::Texture redLight;
+		raylib::Texture blueLight;
+		raylib::Texture yellowLight;
+		raylib::Texture greenLight;
+		raylib::Texture logo;
+		raylib::Texture logoLight;
+		raylib::Texture startUpScreen;
+		raylib::Texture gameOverScreen;
+
+        //Few variables we'll need
+        raylib::Music backgroundMusic;
+		int sequenceLimit = 1;
+		int userIndex = 1;
+		int showingSequenceDuration = 0;
+		int lightDisplayDuration = -1;
+		Buttons color;
+		GameState gameState;
+		bool logoIsReady = false;
+		int logoCounter = 0;
+		bool idle = true;
+
 };

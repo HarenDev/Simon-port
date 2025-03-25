@@ -18,7 +18,7 @@ class Button{
         void render();
         void tick();
         void playSound();
-        void setPressed(int x, int y);
+        void setPressed(raylib::Vector2 mousePosition);
         bool wasPressed(){return isPressed;}
         int getX(){return x;}
         int getY(){return y;}
