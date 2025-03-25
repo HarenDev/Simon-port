@@ -20,7 +20,6 @@ Button::Button(float x, float y, float width, float height, string imagePath, st
 void Button::render(){
     
     if (image.IsValid()){
-        raylib::Rectangle(this->x,this->y,this->width,this->height).Draw(RED);
         image.Draw(this->x, this->y, WHITE);
     }
 
