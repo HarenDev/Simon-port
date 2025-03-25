@@ -3,10 +3,11 @@
 Program::Program(){
     RedButton = new Button(GetScreenWidth()/2-20,GetScreenHeight()/2-260,302,239,"images/BlueButton.png","sounds/YellowButton.mp3");
 	BlueButton = new Button(GetScreenWidth()/2+35,GetScreenHeight()/2-10,236,290,"images/Rebutton.mp4","sounds/YellowButton.mp3");
-	YellowButton = new Button(GetScreenWidth()/2-260,GetScreenHeight()/2+40,287,239,"images/YellowButton.png","sounds/YellowButton.mp3");
-	GreenButton = new Button(GetScreenWidth()/2-260,GetScreenHeight()/2-260,234,294,"images/GreenButton.png","sounds/YellowButton.mp3");
+	YellowButton = new Button(GetScreenWidth()/2-260,GetScreenHeight()/2+40,287,239,"images/RedButton.png","sounds/YellowButton.mp3");
+	GreenButton = new Button(GetScreenWidth()/2-260,GetScreenHeight()/2-260,234,294,"images/RedButton.png","sounds/YellowButton.mp3");
 
     //Load the glowing images for the buttons
+	//We use raylib::Image in order to resize it correctly before Loading as a Texture
 	redLight.Load(raylib::Image("images/BlueLight.png").Resize(376, 329));
     blueLight.Load(raylib::Image("images/GreenLight.png").Resize(309, 376));
     yellowLight.Load(raylib::Image("images/YellowLight.png").Resize(374, 318));
@@ -102,31 +103,31 @@ void Program::Draw(){
 	//If the statements to see see if the buttons should be lit up
 	//If they are then we will draw the glowing images on top of them
 	if (RedButton->GetIsLightUp()) {
-		redLight.Draw(GetScreenWidth()/2-60, GetScreenHeight()/2-305, WHITE);
+		redLight.Draw(GetScreenWidth()/2-60, GetScreenHeight()/2-305);
 	}
 	if (BlueButton->GetIsLightUp()) {
-		blueLight.Draw(GetScreenWidth()/2+5, GetScreenHeight()/2-60, WHITE);
+		blueLight.Draw(GetScreenWidth()/2+5, GetScreenHeight()/2-60);
 	} 
 	if (YellowButton->GetIsLightUp()) {
-		yellowLight.Draw(GetScreenWidth()/2-300, GetScreenHeight()/2+5, WHITE);
+		yellowLight.Draw(GetScreenWidth()/2-300, GetScreenHeight()/2+5);
 	} 
 	if (GreenButton->GetIsLightUp()) {
-		greenLight.Draw(GetScreenWidth()/2-307, GetScreenHeight()/2-295, WHITE);
+		greenLight.Draw(GetScreenWidth()/2-307, GetScreenHeight()/2-295);
 	}
 
 	//Part of the Start Up
 	if(logoIsReady){
-		logo.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, WHITE);
+		logo.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150);
 	}
 
 	//Draw the game over screen
 	if(gameState == GameOver){
-		gameOverScreen.Draw(0,0,WHITE);
+		gameOverScreen.Draw(0,0);
 	}
 
 	//This will draw the "Press to Start" screen at the beginning
 	else if(!idle && gameState == StartUp){
-		startUpScreen.Draw(20,0,WHITE);
+		startUpScreen.Draw(20,0);
 	}
 }
 
@@ -257,6 +258,7 @@ void Program::mousePressed(){
 }
 
 void Program::CheckInput(){
+	//We group the keyboard and mouse methods here to simplify checking
 	keyPressed();
 	mousePressed();
 }
@@ -303,12 +305,13 @@ void Program::startUpSequence(int count){
 	//Logo Drawing
 	if(logoIsReady && logoCounter > 0){
 		logoCounter--;
-		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {255,255,255,(unsigned char)logoCounter});
+		//We use the logoCounter var to increase the opacity in the texture
+		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, Color{255,255,255,(unsigned char)logoCounter});
 	}
 	if((count > 375) && !logoIsReady){
 		logoCounter++;
-		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {255,255,255,(unsigned char)logoCounter});
-		logo.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, raylib::Color {255,255,255,(unsigned char)logoCounter});
+		logoLight.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, Color{255,255,255,(unsigned char)logoCounter});
+		logo.Draw(GetScreenWidth()/2-160,GetScreenHeight()/2-150, Color{255,255,255,(unsigned char)logoCounter});
 	}
 	if(logoCounter >=255){
 		logoIsReady = true;

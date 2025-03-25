@@ -46,8 +46,6 @@ int main ()
 	}
 
 	// cleanup
-	// unload our texture so it can be cleaned up
-	
 	CloseAudioDevice();
 
 	// destroy the window and cleanup the OpenGL context
