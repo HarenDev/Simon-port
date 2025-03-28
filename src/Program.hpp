@@ -2,7 +2,7 @@
 
 #include "Button.hpp"
 #include <vector>
-#include "raylib-cpp/raylib-cpp.hpp"
+#include "raylib-cpp.hpp"
 
 using namespace std;
 
